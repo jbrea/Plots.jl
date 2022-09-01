@@ -11,6 +11,9 @@ _plots_defaults() =
         Dict{Symbol,Any}()
     end
 
+const UNICODEPLOTS_PATH = @path joinpath(@__DIR__, "backends", "unicodeplots.jl")
+const PLOTLYBASE_PATH = @path joinpath(@__DIR__, "backends", "plotlybase.jl")
+
 function __init__()
     user_defaults = _plots_defaults()
     if haskey(user_defaults, :theme)
@@ -57,8 +60,7 @@ function __init__()
     end
 
     @require PlotlyBase = "a03496cd-edff-5a9b-9e67-9cda94a718b5" begin
-        fn = @path joinpath(@__DIR__, "backends", "plotlybase.jl")
-        include(fn)
+        include(PLOTLYBASE_PATH)
     end
 
     @require PGFPlotsX = "8314cec4-20b6-5062-9cdb-752b83310925" begin
@@ -77,8 +79,7 @@ function __init__()
     end
 
     @require UnicodePlots = "b8865327-cd53-5732-bb35-84acbb429228" begin
-        fn = @path joinpath(@__DIR__, "backends", "unicodeplots.jl")
-        include(fn)
+        include(UNICODEPLOTS_PATH)
     end
 
     @require Gaston = "4b11ee91-296f-5714-9832-002c20994614" begin
