@@ -1,8 +1,8 @@
 using REPL
 using Scratch
-using PlotlyBase
+import PlotlyBase
 
-include(joinpath("backends", "plotybase.jl"))
+include(joinpath("backends", "plotlybase.jl"))
 
 const plotly_local_file_path = Ref{Union{Nothing,String}}(nothing)
 
