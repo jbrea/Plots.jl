@@ -1,6 +1,8 @@
 using REPL
 using Scratch
-using RelocatableFolders
+using PlotlyBase
+
+include(joinpath("backends", "plotybase.jl"))
 
 const plotly_local_file_path = Ref{Union{Nothing,String}}(nothing)
 
@@ -10,9 +12,6 @@ _plots_defaults() =
     else
         Dict{Symbol,Any}()
     end
-
-const UNICODEPLOTS_PATH = @path joinpath(@__DIR__, "backends", "unicodeplots.jl")
-const PLOTLYBASE_PATH = @path joinpath(@__DIR__, "backends", "plotlybase.jl")
 
 function __init__()
     user_defaults = _plots_defaults()
@@ -45,45 +44,47 @@ function __init__()
     )
 
     @require HDF5 = "f67ccb44-e63f-5c2f-98bd-6dc0ccc4ba2f" begin
-        fn = @path joinpath(@__DIR__, "backends", "hdf5.jl")
+        fn = joinpath(@__DIR__, "backends", "hdf5.jl")
         include(fn)
     end
 
     @require InspectDR = "d0351b0e-4b05-5898-87b3-e2a8edfddd1d" begin
-        fn = @path joinpath(@__DIR__, "backends", "inspectdr.jl")
+        fn = joinpath(@__DIR__, "backends", "inspectdr.jl")
         include(fn)
     end
 
     @require PGFPlots = "3b7a836e-365b-5785-a47d-02c71176b4aa" begin
-        fn = @path joinpath(@__DIR__, "backends", "deprecated", "pgfplots.jl")
+        fn = joinpath(@__DIR__, "backends", "deprecated", "pgfplots.jl")
         include(fn)
     end
 
-    @require PlotlyBase = "a03496cd-edff-5a9b-9e67-9cda94a718b5" begin
-        include(PLOTLYBASE_PATH)
-    end
+#     @require PlotlyBase = "a03496cd-edff-5a9b-9e67-9cda94a718b5" begin
+#         fn = joinpath(@__DIR__, "backends", "plotlybase.jl")
+#         include(fn)
+#     end
 
     @require PGFPlotsX = "8314cec4-20b6-5062-9cdb-752b83310925" begin
-        fn = @path joinpath(@__DIR__, "backends", "pgfplotsx.jl")
+        fn = joinpath(@__DIR__, "backends", "pgfplotsx.jl")
         include(fn)
     end
 
     @require PlotlyJS = "f0f68f2c-4968-5e81-91da-67840de0976a" begin
-        fn = @path joinpath(@__DIR__, "backends", "plotlyjs.jl")
+        fn = joinpath(@__DIR__, "backends", "plotlyjs.jl")
         include(fn)
     end
 
     @require PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee" begin
-        fn = @path joinpath(@__DIR__, "backends", "pyplot.jl")
+        fn = joinpath(@__DIR__, "backends", "pyplot.jl")
         include(fn)
     end
 
-    @require UnicodePlots = "b8865327-cd53-5732-bb35-84acbb429228" begin
-        include(UNICODEPLOTS_PATH)
-    end
+#     @require UnicodePlots = "b8865327-cd53-5732-bb35-84acbb429228" begin
+#         fn = joinpath(@__DIR__, "backends", "unicodeplots.jl")
+#         include(fn)
+#     end
 
     @require Gaston = "4b11ee91-296f-5714-9832-002c20994614" begin
-        fn = @path joinpath(@__DIR__, "backends", "gaston.jl")
+        fn = joinpath(@__DIR__, "backends", "gaston.jl")
         include(fn)
     end
 
