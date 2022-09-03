@@ -3,7 +3,7 @@ using Scratch
 import PlotlyBase
 
 include(joinpath("backends", "plotlybase.jl"))
-include(joinpath("backends", "hd5f.jl"))
+include(joinpath("backends", "hdf5.jl"))
 
 const plotly_local_file_path = Ref{Union{Nothing,String}}(nothing)
 
