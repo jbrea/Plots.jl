@@ -1,6 +1,6 @@
 using REPL
 using Scratch
-import PlotlyBase
+import PlotlyBase, HDF5
 
 include(joinpath("backends", "plotlybase.jl"))
 include(joinpath("backends", "hdf5.jl"))
